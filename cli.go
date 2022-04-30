@@ -9,6 +9,7 @@ import (
 func PrintHelp() {
 	fmt.Println("")
 	fmt.Println("  xpresstopia new [name]")
+	fmt.Println("  xpresstopia scene [slug]")
 	fmt.Println("")
 }
 
