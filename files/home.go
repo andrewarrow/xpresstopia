@@ -6,7 +6,7 @@ import (
 	"runtime"
 )
 
-const STORAGE = ".expresstopia"
+const STORAGE = ".xpresstopia"
 
 func UserHomeDir() string {
 	if runtime.GOOS == "windows" {

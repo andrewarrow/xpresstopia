@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"time"
+	"xpresstopia/commands"
 	"xpresstopia/files"
 )
 
@@ -23,6 +24,7 @@ func main() {
 	if command == "new" {
 		name := os.Args[2]
 		fmt.Println(name)
+		files.SaveFile("screenplay.txt", name)
 	} else if command == "scene" {
 		slug := os.Args[2]
 		path := files.Filepath("scene.txt")
@@ -31,7 +33,9 @@ func main() {
 		cmd.Stdin = os.Stdin
 		cmd.Stdout = os.Stdout
 		cmd.Run()
+		play := files.ReadFile("screenplay.txt")
 		summary := files.ReadFile("scene.txt")
+		commands.AddScene(play, slug, summary)
 		fmt.Println(slug, summary)
 	} else {
 		fmt.Println("Command not available.")
