@@ -2,7 +2,6 @@ package commands
 
 import (
 	"encoding/json"
-	"fmt"
 	"strings"
 	"xpresstopia/files"
 )
@@ -15,13 +14,11 @@ type Scene struct {
 func AddScene(play, slug, summary string) {
 	existing := files.ReadFile(play + "_scenes.txt")
 	list := []Scene{}
-	if existing == "" {
-		scene := Scene{slug, strings.TrimSpace(summary)}
-		list = append(list, scene)
-		b, _ := json.Marshal(list)
-		files.SaveFile(play+"_scenes.txt", string(b))
-	} else {
+	if existing != "" {
 		json.Unmarshal([]byte(existing), &list)
-		fmt.Println(list)
 	}
+	scene := Scene{slug, strings.TrimSpace(summary)}
+	list = append(list, scene)
+	b, _ := json.Marshal(list)
+	files.SaveFile(play+"_scenes.txt", string(b))
 }
