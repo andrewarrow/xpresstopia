@@ -42,10 +42,15 @@ func AddGroup(name, from, to string) {
 
 	play := files.ReadFile("screenplay.txt")
 
+	list := []Group{}
+	existing := files.ReadFile(play + "_groups.txt")
+	if existing != "" {
+		json.Unmarshal([]byte(existing), &list)
+	}
+
 	fromInt, _ := strconv.Atoi(from)
 	toInt, _ := strconv.Atoi(to)
 
-	list := []Group{}
 	group := Group{name, strings.TrimSpace(summary), fromInt, toInt}
 	list = append(list, group)
 	b, _ := json.Marshal(list)
