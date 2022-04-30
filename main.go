@@ -28,6 +28,11 @@ func main() {
 	} else if command == "ls" {
 		play := files.ReadFile("screenplay.txt")
 		commands.ListScenes(play)
+	} else if command == "group" {
+		group := os.Args[2]
+		from := os.Args[3]
+		to := os.Args[4]
+		commands.AddGroup(group, from, to)
 	} else if command == "scene" {
 		slug := os.Args[2]
 		path := files.Filepath("scene.txt")

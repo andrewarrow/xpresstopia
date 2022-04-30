@@ -11,6 +11,7 @@ func PrintHelp() {
 	fmt.Println("  xpresstopia new [name]")
 	fmt.Println("  xpresstopia scene [slug]")
 	fmt.Println("  xpresstopia ls")
+	fmt.Println("  xpresstopia group [name] [from] [to]")
 	fmt.Println("")
 }
 
