@@ -2,6 +2,7 @@ package commands
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"os/exec"
 	"strconv"
@@ -14,6 +15,20 @@ type Group struct {
 	Summary string `json:"summary"`
 	From    int    `json:"from"`
 	To      int    `json:"to"`
+}
+
+func ListGroups(play string) {
+	existing := files.ReadFile(play + "_groups.txt")
+	list := []Group{}
+	if existing != "" {
+		json.Unmarshal([]byte(existing), &list)
+	}
+	fmt.Println("")
+	for i, g := range list {
+		fmt.Printf("%2d. %s\n", i+1, g.Name)
+		fmt.Printf("     %s\n", g.Summary)
+	}
+	fmt.Println("")
 }
 
 func AddGroup(name, from, to string) {

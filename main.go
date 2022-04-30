@@ -27,7 +27,15 @@ func main() {
 		files.SaveFile("screenplay.txt", name)
 	} else if command == "ls" {
 		play := files.ReadFile("screenplay.txt")
-		commands.ListScenes(play)
+		flavor := "scenes"
+		if len(os.Args) > 2 {
+			flavor = os.Args[2]
+		}
+		if flavor == "scenes" {
+			commands.ListScenes(play)
+		} else {
+			commands.ListGroups(play)
+		}
 	} else if command == "group" {
 		group := os.Args[2]
 		from := os.Args[3]
