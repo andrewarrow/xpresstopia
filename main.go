@@ -25,6 +25,9 @@ func main() {
 		name := os.Args[2]
 		fmt.Println(name)
 		files.SaveFile("screenplay.txt", name)
+	} else if command == "ls" {
+		play := files.ReadFile("screenplay.txt")
+		commands.ListScenes(play)
 	} else if command == "scene" {
 		slug := os.Args[2]
 		path := files.Filepath("scene.txt")
@@ -36,7 +39,6 @@ func main() {
 		play := files.ReadFile("screenplay.txt")
 		summary := files.ReadFile("scene.txt")
 		commands.AddScene(play, slug, summary)
-		fmt.Println(slug, summary)
 	} else {
 		fmt.Println("Command not available.")
 	}
