@@ -21,6 +21,7 @@ func ListScenes(play string) {
 	fmt.Println("")
 	for i, s := range list {
 		fmt.Printf("%2d. %s\n", i+1, s.Slug)
+		fmt.Printf("     %s\n", s.Summary)
 	}
 	fmt.Println("")
 }
